@@ -4,23 +4,23 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 
-public class FixedWidthTabPageIndicator extends TabPageIndicator {
+public class FixedWeightTabPageIndicator extends TabPageIndicator {
 
     private final float mWeight;
     private int mFixedTabWidth;
 
-    public FixedWidthTabPageIndicator(Context context) {
+    public FixedWeightTabPageIndicator(Context context) {
         this(context, null);
     }
 
-    public FixedWidthTabPageIndicator(Context context, AttributeSet attrs) {
-        this(context, attrs, R.attr.vpiFixedWidthIndicatorStyle);
+    public FixedWeightTabPageIndicator(Context context, AttributeSet attrs) {
+        this(context, attrs, R.attr.vpiFixedWeightIndicatorStyle);
     }
 
-    public FixedWidthTabPageIndicator(Context context, AttributeSet attrs, int defStyle){
+    public FixedWeightTabPageIndicator(Context context, AttributeSet attrs, int defStyle){
         super(context, attrs);
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.FixedWidthTabPageIndicator, defStyle, 0);
-        mWeight = a.getFloat(R.styleable.FixedWidthTabPageIndicator_tabWeight, .5F);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.FixedWeightTabPageIndicator, defStyle, 0);
+        mWeight = a.getFloat(R.styleable.FixedWeightTabPageIndicator_tabWeight, .5F);
 
     }
 

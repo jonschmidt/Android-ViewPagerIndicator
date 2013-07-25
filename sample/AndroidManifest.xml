@@ -247,8 +247,8 @@
         </intent-filter>
       </activity>
         <activity
-                android:name=".SampleTabsFixedWidth"
-                android:label="Tabs/Fixed Width"
+                android:name=".SampleTabsFixedWeight"
+                android:label="Tabs/Fixed Weight"
                 android:theme="@style/Theme.PageIndicatorDefaults">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
