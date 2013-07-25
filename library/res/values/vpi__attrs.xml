@@ -29,6 +29,8 @@
         <attr name="vpiTabPageIndicatorStyle" format="reference"/>
         <!-- Style of the underline indicator. -->
         <attr name="vpiUnderlinePageIndicatorStyle" format="reference"/>
+        <!-- Style of the circle indicator. -->
+        <attr name="vpiFixedWidthIndicatorStyle" format="reference"/>
     </declare-styleable>
 
     <attr name="centered" format="boolean" />
@@ -125,5 +127,10 @@
         <attr name="selectedColor" />
         <!-- View background -->
         <attr name="android:background"/>
+    </declare-styleable>
+
+    <declare-styleable name="FixedWidthTabPageIndicator">
+        <!-- Portion of the total width that each Tab Indicator should occupy -->
+        <attr name="tabWeight" format="float" />
     </declare-styleable>
 </resources>

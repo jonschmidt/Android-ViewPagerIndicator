@@ -1,18 +1,27 @@
 package com.viewpagerindicator;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
 
 public class FixedWidthTabPageIndicator extends TabPageIndicator {
 
+    private final float mWeight;
     private int mFixedTabWidth;
 
     public FixedWidthTabPageIndicator(Context context) {
-        super(context);
+        this(context, null);
     }
 
     public FixedWidthTabPageIndicator(Context context, AttributeSet attrs) {
+        this(context, attrs, R.attr.vpiFixedWidthIndicatorStyle);
+    }
+
+    public FixedWidthTabPageIndicator(Context context, AttributeSet attrs, int defStyle){
         super(context, attrs);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.FixedWidthTabPageIndicator, defStyle, 0);
+        mWeight = a.getFloat(R.styleable.FixedWidthTabPageIndicator_tabWeight, .5F);
+
     }
 
     @Override
@@ -20,7 +29,7 @@ public class FixedWidthTabPageIndicator extends TabPageIndicator {
         final int widthMode = MeasureSpec.getMode(widthMeasureSpec);
         final boolean lockedExpanded = widthMode == MeasureSpec.EXACTLY;
         setFillViewport(lockedExpanded);
-        mFixedTabWidth = (mTabLayout.getChildCount() > 1) ? MeasureSpec.getSize(widthMeasureSpec) / 2 : -1;
+        mFixedTabWidth = (mTabLayout.getChildCount() > 1) ? (int) (MeasureSpec.getSize(widthMeasureSpec) * mWeight) : -1;
 
         final int oldWidth = getMeasuredWidth();
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
