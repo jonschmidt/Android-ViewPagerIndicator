@@ -30,7 +30,7 @@
         <!-- Style of the underline indicator. -->
         <attr name="vpiUnderlinePageIndicatorStyle" format="reference"/>
         <!-- Style of the fixed weight tab indicator. -->
-        <attr name="vpiFixedWeightIndicatorStyle" format="reference"/>
+        <attr name="vpiFixedWeightTabIndicatorStyle" format="reference"/>
     </declare-styleable>
 
     <attr name="centered" format="boolean" />

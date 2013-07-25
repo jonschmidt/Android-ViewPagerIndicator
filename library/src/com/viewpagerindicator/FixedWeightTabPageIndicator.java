@@ -14,7 +14,7 @@ public class FixedWeightTabPageIndicator extends TabPageIndicator {
     }
 
     public FixedWeightTabPageIndicator(Context context, AttributeSet attrs) {
-        this(context, attrs, R.attr.vpiFixedWeightIndicatorStyle);
+        this(context, attrs, R.attr.vpiFixedWeightTabIndicatorStyle);
     }
 
     public FixedWeightTabPageIndicator(Context context, AttributeSet attrs, int defStyle){
