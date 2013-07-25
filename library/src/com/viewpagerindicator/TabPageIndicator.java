@@ -16,6 +16,9 @@
  */
 package com.viewpagerindicator;
 
+import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
+
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -26,9 +29,6 @@ import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
-import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 
 /**
  * This widget implements the dynamic action bar tab behavior that can change
@@ -54,7 +54,7 @@ public class TabPageIndicator extends HorizontalScrollView implements PageIndica
 
     private final OnClickListener mTabClickListener = new OnClickListener() {
         public void onClick(View view) {
-            TabView tabView = (TabView)view;
+            TabViewBase tabView = (TabViewBase)view;
             final int oldSelected = mViewPager.getCurrentItem();
             final int newSelected = tabView.getIndex();
             mViewPager.setCurrentItem(newSelected);
@@ -64,13 +64,13 @@ public class TabPageIndicator extends HorizontalScrollView implements PageIndica
         }
     };
 
-    private final IcsLinearLayout mTabLayout;
+    protected final IcsLinearLayout mTabLayout;
 
     private ViewPager mViewPager;
     private ViewPager.OnPageChangeListener mListener;
 
     private int mMaxTabWidth;
-    private int mSelectedTabIndex;
+    protected int mSelectedTabIndex;
 
     private OnTabReselectedListener mTabReselectedListener;
 
@@ -150,7 +150,7 @@ public class TabPageIndicator extends HorizontalScrollView implements PageIndica
     }
 
     private void addTab(int index, CharSequence text, int iconResId) {
-        final TabView tabView = new TabView(getContext());
+        final TabViewBase tabView = createTabView();
         tabView.mIndex = index;
         tabView.setFocusable(true);
         tabView.setOnClickListener(mTabClickListener);
@@ -161,6 +161,10 @@ public class TabPageIndicator extends HorizontalScrollView implements PageIndica
         }
 
         mTabLayout.addView(tabView, new LinearLayout.LayoutParams(0, MATCH_PARENT, 1));
+    }
+
+    protected TabViewBase createTabView() {
+        return new TabView(getContext());
     }
 
     @Override
@@ -258,11 +262,10 @@ public class TabPageIndicator extends HorizontalScrollView implements PageIndica
         mListener = listener;
     }
 
-    private class TabView extends TextView {
-        private int mIndex;
+    private class TabView extends TabViewBase {
 
         public TabView(Context context) {
-            super(context, null, R.attr.vpiTabPageIndicatorStyle);
+            super(context);
         }
 
         @Override
@@ -274,6 +277,14 @@ public class TabPageIndicator extends HorizontalScrollView implements PageIndica
                 super.onMeasure(MeasureSpec.makeMeasureSpec(mMaxTabWidth, MeasureSpec.EXACTLY),
                         heightMeasureSpec);
             }
+        }
+    }
+
+    protected class TabViewBase extends TextView {
+        protected int mIndex;
+
+        public TabViewBase(Context context) {
+            super(context, null, R.attr.vpiTabPageIndicatorStyle);
         }
 
         public int getIndex() {
